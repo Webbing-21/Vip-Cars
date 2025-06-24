@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VIP Ride | عرض حصري</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Base Styles */
+      :root {
+        --primary-orange: #ff7f00; /* Vibrant Orange */
+        --light-orange: #ff9a44; /* Lighter Orange */
+        --dark-bg: #1a1a1a; /* Very Dark Grey/Black */
+        --light-text: #f0f0f0; /* Off-white for general text */
+        --white: #ffffff;
+        --soft-grey: #f8f8f8; /* Soft background grey */
+        --text-color: #333; /* Dark text for light backgrounds */
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Cairo", sans-serif;
+        background-color: var(--soft-grey);
+        color: var(--text-color);
+        line-height: 1.7;
+        overflow-x: hidden; /* Prevent horizontal scroll */
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Hero Section */
+      .hero-section {
+        background: linear-gradient(135deg, var(--primary-orange), var(--light-orange));
+        color: var(--white);
+        text-align: center;
+        padding: 120px 20px 80px;
+        position: relative;
+        overflow: hidden;
+        border-bottom-left-radius: 50px;
+        border-bottom-right-radius: 50px;
+        margin-bottom: 60px;
+      }
+
+      .hero-section::before,
+      .hero-section::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        animation: bubble 15s infinite ease-in-out;
+      }
+
+      .hero-section::before {
+        width: 200px;
+        height: 200px;
+        top: 10%;
+        left: -5%;
+        animation-delay: 0s;
+      }
+
+      .hero-section::after {
+        width: 150px;
+        height: 150px;
+        bottom: 15%;
+        right: -5%;
+        animation-delay: 3s;
+      }
+
+      .hero-section h1 {
+        font-size: 4.5rem;
+        margin-bottom: 25px;
+        font-weight: 900;
+        text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-section p {
+        font-size: 1.8rem;
+        opacity: 0.9;
+        margin-bottom: 30px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-duration {
+        font-size: 1.4rem;
+        font-weight: 700;
+        padding: 10px 25px;
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 30px;
+        display: inline-block;
+        backdrop-filter: blur(5px);
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Section Styling */
+      .section {
+        background-color: var(--white);
+        border-radius: 25px;
+        box-shadow: 0 15px 45px rgba(0, 0, 0, 0.1);
+        padding: 50px;
+        margin-bottom: 60px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .section-title {
+        color: var(--primary-orange);
+        font-size: 2.8rem;
+        font-weight: 900;
+        text-align: center;
+        margin-bottom: 40px;
+        position: relative;
+        padding-bottom: 15px;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 5px;
+        background-color: var(--primary-orange);
+        border-radius: 5px;
+      }
+
+      /* General Text and Lists */
+      .section p {
+        font-size: 1.15rem;
+        margin-bottom: 25px;
+        text-align: justify;
+      }
+
+      .features-list {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 30px;
+      }
+
+      .features-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+        margin-bottom: 15px;
+        font-size: 1.1rem;
+        background-color: var(--soft-grey);
+        padding: 12px 20px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease;
+      }
+
+      .features-list li:hover {
+        transform: translateX(8px);
+      }
+
+      .icon-checkmark {
+        width: 30px;
+        height: 30px;
+        background: var(--primary-orange);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--white);
+        font-weight: bold;
+        flex-shrink: 0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Tech Stack Grid */
+      .tech-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+      }
+
+      .tech-card {
+        background-color: var(--white);
+        border-radius: 18px;
+        padding: 30px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 2px solid transparent;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .tech-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(255, 127, 0, 0.2);
+        border-color: var(--primary-orange);
+      }
+
+      .tech-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 6px;
+        background: linear-gradient(90deg, transparent, var(--primary-orange), transparent);
+        transform: translateX(-100%);
+        transition: transform 0.4s ease-out;
+      }
+
+      .tech-card:hover::before {
+        transform: translateX(0);
+      }
+
+      .tech-card .tech-icon-large {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(45deg, var(--primary-orange), var(--light-orange));
+        border-radius: 50%;
+        margin: 0 auto 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2.5rem;
+        color: var(--white);
+        font-weight: 700;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .tech-card h3 {
+        font-size: 1.8rem;
+        color: var(--primary-orange);
+        margin-bottom: 15px;
+        font-weight: 700;
+      }
+
+      .tech-card p {
+        font-size: 1rem;
+        color: #555;
+      }
+
+      /* Workflow Diagram */
+      .workflow-diagram {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 40px;
+        margin-top: 50px;
+      }
+
+      .workflow-step {
+        background-color: var(--soft-grey);
+        border-radius: 15px;
+        padding: 25px;
+        text-align: center;
+        flex: 1;
+        min-width: 200px;
+        max-width: 280px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+        position: relative;
+        transition: transform 0.3s ease;
+      }
+
+      .workflow-step:hover {
+        transform: translateY(-8px);
+      }
+
+      .workflow-step .step-number {
+        width: 45px;
+        height: 45px;
+        background: var(--primary-orange);
+        border-radius: 50%;
+        color: var(--white);
+        font-size: 1.6rem;
+        font-weight: 700;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: -45px auto 20px; /* Position at the top edge */
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        border: 3px solid var(--white);
+      }
+
+      .workflow-step h4 {
+        font-size: 1.4rem;
+        color: var(--primary-orange);
+        margin-bottom: 10px;
+        font-weight: 700;
+      }
+
+      .workflow-step p {
+        font-size: 0.95rem;
+        color: #666;
+        margin-bottom: 0;
+      }
+
+      .arrow {
+        position: absolute;
+        top: 50%;
+        right: -30px; /* Position between steps */
+        transform: translateY(-50%);
+        color: var(--primary-orange);
+        font-size: 2.5rem;
+        z-index: 2;
+        /* For RTL, arrow points left */
+        left: -30px;
+        right: auto;
+      }
+
+      .workflow-diagram > *:not(:last-child)::after {
+        content: "◀"; /* Left arrow for RTL */
+        position: absolute;
+        top: 50%;
+        left: -25px; /* Adjust for spacing */
+        transform: translateY(-50%) rotate(0deg);
+        font-size: 2.5rem;
+        color: var(--primary-orange);
+      }
+
+      .workflow-diagram > div:first-child::after {
+        display: none;
+      }
+
+      /* Pricing Section */
+      .pricing-section {
+        background: linear-gradient(135deg, var(--dark-bg), #333);
+        color: var(--light-text);
+        padding: 80px 20px;
+        text-align: center;
+        border-radius: 25px;
+        margin-top: 60px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+      }
+
+      .pricing-section .section-title {
+        color: var(--primary-orange);
+        font-size: 3.5rem;
+      }
+
+      .pricing-value {
+        font-size: 5.5rem;
+        font-weight: 900;
+        color: var(--white);
+        margin: 40px 0 20px;
+        direction: ltr; /* Ensure numbers are LTR */
+      }
+
+      .pricing-currency {
+        font-size: 2.5rem;
+        margin-right: 15px; /* Space for currency */
+      }
+
+      .pricing-description {
+        font-size: 1.4rem;
+        opacity: 0.8;
+        margin-bottom: 40px;
+      }
+
+      .pricing-includes {
+        background-color: rgba(255, 255, 255, 0.08);
+        border-radius: 18px;
+        padding: 30px;
+        max-width: 700px;
+        margin: 0 auto;
+        text-align: right;
+      }
+
+      .pricing-includes h3 {
+        font-size: 2rem;
+        margin-bottom: 25px;
+        color: var(--primary-orange);
+        font-weight: 700;
+      }
+
+      .pricing-includes ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .pricing-includes ul li {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 15px;
+        font-size: 1.1rem;
+        background-color: rgba(255, 255, 255, 0.05);
+        padding: 10px 15px;
+        border-radius: 8px;
+        border-right: 3px solid var(--primary-orange);
+      }
+
+      .pricing-includes ul li:last-child {
+        margin-bottom: 0;
+      }
+
+      /* Mockup Gallery */
+      .mockup-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+      }
+
+      .mockup-card {
+        background-color: var(--dark-bg);
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .mockup-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 40px rgba(255, 127, 0, 0.3);
+      }
+
+      .mockup-card img {
+        width: 100%;
+        height: 250px; /* Fixed height for consistency */
+        object-fit: cover; /* Cover the area */
+        display: block;
+        border-bottom: 5px solid var(--primary-orange);
+      }
+
+      .mockup-card .mockup-title {
+        color: var(--light-text);
+        padding: 20px;
+        font-size: 1.3rem;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      /* Call to Action */
+      .call-to-action {
+        background: linear-gradient(135deg, #333, #555);
+        color: var(--white);
+        text-align: center;
+        padding: 60px 20px;
+        border-radius: 25px;
+        margin-top: 60px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .call-to-action h2 {
+        font-size: 3rem;
+        margin-bottom: 25px;
+        font-weight: 900;
+        text-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .call-to-action p {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+        opacity: 0.9;
+      }
+
+      .call-to-action .contact-button {
+        display: inline-block;
+        background-color: var(--primary-orange);
+        color: var(--white);
+        padding: 15px 40px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-size: 1.4rem;
+        font-weight: 700;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        box-shadow: 0 5px 15px rgba(255, 127, 0, 0.4);
+      }
+
+      .call-to-action .contact-button:hover {
+        background-color: #e67300;
+        transform: translateY(-3px);
+      }
+
+      /* Animations */
+      @keyframes bubble {
+        0%,
+        100% {
+          transform: translateY(0) scale(1);
+          opacity: 0.8;
+        }
+        50% {
+          transform: translateY(-20px) scale(1.05);
+          opacity: 1;
+        }
+      }
+
+      /* Responsive Adjustments */
+      @media (max-width: 1024px) {
+        .hero-section h1 {
+          font-size: 3.5rem;
+        }
+        .hero-section p {
+          font-size: 1.5rem;
+        }
+        .section-title {
+          font-size: 2.2rem;
+        }
+        .tech-card .tech-icon-large {
+          width: 70px;
+          height: 70px;
+          font-size: 2.2rem;
+        }
+        .pricing-value {
+          font-size: 4.5rem;
+        }
+        .pricing-currency {
+          font-size: 2rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero-section {
+          padding: 80px 20px 50px;
+          margin-bottom: 40px;
+        }
+        .hero-section h1 {
+          font-size: 2.8rem;
+        }
+        .hero-section p {
+          font-size: 1.2rem;
+        }
+        .hero-duration {
+          font-size: 1.1rem;
+        }
+        .section {
+          padding: 30px;
+          margin-bottom: 40px;
+        }
+        .section-title {
+          font-size: 2rem;
+          margin-bottom: 30px;
+        }
+        .section p {
+          font-size: 1rem;
+        }
+        .features-list li {
+          font-size: 1rem;
+          padding: 10px 15px;
+        }
+        .tech-grid {
+          grid-template-columns: 1fr;
+        }
+        .tech-card {
+          padding: 25px;
+        }
+        .tech-card .tech-icon-large {
+          width: 60px;
+          height: 60px;
+          font-size: 2rem;
+        }
+        .tech-card h3 {
+          font-size: 1.5rem;
+        }
+        .workflow-diagram {
+          flex-direction: column;
+          gap: 60px; /* More space for vertical arrows */
+        }
+        .workflow-step::after {
+          content: "⬇️"; /* Down arrow for vertical flow */
+          right: 50%;
+          bottom: -45px; /* Position below the card */
+          top: auto;
+          transform: translateX(50%);
+          left: auto; /* Reset left property for vertical flow */
+          font-size: 3rem;
+        }
+        .workflow-step:last-child::after {
+          display: none;
+        }
+        .workflow-step .step-number {
+          margin: -35px auto 15px;
+        }
+        .pricing-section {
+          padding: 60px 20px;
+        }
+        .pricing-section .section-title {
+          font-size: 2.5rem;
+        }
+        .pricing-value {
+          font-size: 3.5rem;
+        }
+        .pricing-currency {
+          font-size: 1.8rem;
+        }
+        .pricing-description {
+          font-size: 1.2rem;
+        }
+        .pricing-includes {
+          padding: 20px;
+        }
+        .pricing-includes h3 {
+          font-size: 1.6rem;
+        }
+        .pricing-includes ul li {
+          font-size: 1rem;
+        }
+        .mockup-gallery {
+          grid-template-columns: 1fr;
+        }
+        .mockup-card img {
+          height: 200px;
+        }
+        .mockup-card .mockup-title {
+          font-size: 1.1rem;
+        }
+        .call-to-action h2 {
+          font-size: 2.5rem;
+        }
+        .call-to-action p {
+          font-size: 1.2rem;
+        }
+        .call-to-action .contact-button {
+          padding: 12px 30px;
+          font-size: 1.2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hero-section">
+      <div class="container">
+        <h1>🚗 VIP Ride 🍊</h1>
+        <p>تجربة تنقل فاخرة تتخطى كل التوقعات</p>
+        <span class="hero-duration">مدة التنفيذ: <strong>90 يوم عمل</strong></span>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="section">
+        <h2 class="section-title">✨ مقدمة المشروع وفكرة التطبيق</h2>
+        <p>
+          "VIP Ride" هو تطبيق ذكي فريد من نوعه، يقدم تجربة تنقل
+          فاخرة للعملاء من خلال أسطول من السيارات الفخمة يقودها سائقون محترفون
+          ومدربون. تستهدف خدمتنا فئة العملاء الباحثين عن الراحة، الأمان،
+          والرفاهية المطلقة في تنقلاتهم اليومية أو المناسبات الخاصة.
+        </p>
+        <ul class="features-list">
+          <li>
+            <div class="icon-checkmark">✓</div>
+            <strong>تطبيق يشبه Uber، لكن للسيارات الفخمة فقط.</strong>
+          </li>
+          <li>
+            <div class="icon-checkmark">✓</div>
+            <strong>اختيار دقيق لنوع السيارة:</strong> مرسيدس، بي إم دبليو،
+            أودي، وغيرها.
+          </li>
+          <li>
+            <div class="icon-checkmark">✓</div>
+            <strong>سائقون مدربون:</strong> على التعامل الراقي مع عملاء VIP.
+          </li>
+          <li>
+            <div class="icon-checkmark">✓</div>
+            <strong>واجهة مستخدم راقية وبسيطة.</strong>
+          </li>
+          <li>
+            <div class="icon-checkmark">✓</div>
+            <strong>دعم الحجز المسبق والاشتراكات الشهرية لرجال الأعمال.</strong>
+          </li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">🧠 التقنيات المستخدمة في بناء "VIP Ride"</h2>
+        <p>
+          نعتمد على حزمة تقنيات متكاملة وعصرية لضمان بناء نظام
+          <strong>سريع، مرن، آمن، وقابل للتوسع المستقبلي</strong>:
+        </p>
+        <div class="tech-grid">
+          <div class="tech-card">
+            <div class="tech-icon-large">N</div>
+            <h3>Node.js</h3>
+            <p>
+              <strong>الخادم والعمليات الخلفية (Backend)</strong>: يوفر
+              سرعة واستقرار في المعالجة الخلفية، ويتعامل مع منطق الأعمال،
+              وإدارة جلسات المستخدم، وحساب المسافات والتسعير اللحظي، ومعالجة
+              الطلبات في الوقت الفعلي.
+            </p>
+          </div>
+          <div class="tech-card">
+            <div class="tech-icon-large">⚡</div>
+            <h3>Next.js</h3>
+            <p>
+              <strong>واجهة المستخدم الديناميكية (Frontend)</strong>: يوفر
+              واجهة احترافية وسريعة الاستجابة، مع تحسينات قوية للأداء مثل العرض
+              من جانب الخادم (SSR) وتحسينات محركات البحث (SEO) لتجربة مستخدم
+              سلسة وسريعة.
+            </p>
+          </div>
+          <div class="tech-card">
+            <div class="tech-icon-large">M</div>
+            <h3>MongoDB</h3>
+            <p>
+              <strong>قاعدة البيانات المرنة والحديثة (Database)</strong>:
+              قاعدة بيانات NoSQL وثائقية، مرنة وسريعة، سهلة التوسع وداعمة
+              للبيانات الجغرافية (GeoJSON) لتخزين بيانات الرحلات، السائقين،
+              العملاء، والمدفوعات بكفاءة.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">🧱 هيكل النظام وتجربة المستخدم المتوقعة</h2>
+        <p>يتكون نظام "VIP Ride" من ثلاثة أجزاء رئيسية تضمن تجربة سلسة ومتكاملة:</p>
+        <ul class="features-list">
+          <li>
+            <div class="icon-checkmark">✓</div>
+            <strong>تطبيق العميل:</strong> واجهة بديهية تتيح للعميل تسجيل الدخول، تحديد الموقع، اختيار نوع السيارة الفاخرة، تتبع السائق في الوقت الفعلي، الدفع المرن (فيزا – محفظة – كاش)، وتقييم الرحلة لضمان جودة الخدمة.
+          </li>
+          <li>
+            <div class="icon-checkmark">✓</div>
+            <strong>تطبيق السائق:</strong> منصة متكاملة لتوثيق السائقين، استقبال الرحلات، متابعة الأرباح، نظام إشعارات فوري للرحلات الجديدة، وخرائط مدمجة لتحقيق أسرع وصول للعملاء.
+          </li>
+          <li>
+            <div class="icon-checkmark">✓</div>
+            <strong>لوحة تحكم المشرف (Admin Dashboard):</strong> أداة قوية لإدارة شاملة للسائقين والعملاء، مراقبة دقيقة للرحلات، تحكم كامل بالأسعار والعروض الترويجية، بالإضافة إلى تقارير مالية وإحصائيات مفصلة لدعم اتخاذ القرارات.
+          </li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">🔗 كيف تعمل هذه التقنيات معًا بانسجام؟</h2>
+        <p>
+          تتعاون هذه التقنيات معًا لتشكيل بنية متينة وفعالة لنظام "VIP Ride"، حيث تتكامل كل طبقة لضمان الأداء الأمثل:
+        </p>
+        <div class="workflow-diagram">
+          <div class="workflow-step">
+            <div class="step-number">1</div>
+            <h4>المستخدم</h4>
+            <p>يتفاعل مع واجهة التطبيق الفاخرة وسهلة الاستخدام.</p>
+          </div>
+          <div class="workflow-step">
+            <div class="step-number">2</div>
+            <h4>Next.js<br />(الواجهة الأمامية)</h4>
+            <p>يرسل الطلبات إلى الخادم ويستقبل البيانات بسرعة فائقة.</p>
+          </div>
+          <div class="workflow-step">
+            <div class="step-number">3</div>
+            <h4>Node.js<br />(الخادم الخلفي)</h4>
+            <p>يعالج الحجوزات، التتبع اللحظي، عمليات الدفع، والتسعير بذكاء.</p>
+          </div>
+          <div class="workflow-step">
+            <div class="step-number">4</div>
+            <h4>MongoDB<br />(قاعدة البيانات)</h4>
+            <p>تخزن بيانات الرحلات، السائقين، والعملاء بمرونة وكفاءة عالية.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">📈 مميزات إضافية نضمنها لمشروعك</h2>
+        <div class="tech-grid">
+          <div class="tech-card">
+            <div class="tech-icon-large">🔒</div>
+            <h3>أمان عالي</h3>
+            <p>
+              تطبيق أفضل الممارسات الأمنية لحماية بيانات المستخدمين والرحلات
+              من خلال التشفير والتحقق الصارم.
+            </p>
+          </div>
+          <div class="tech-card">
+            <div class="tech-icon-large">⚡</div>
+            <h3>سرعة فائقة</h3>
+            <p>
+              تحميل صفحات سريع واستجابة فورية للعمليات، مما يعزز تجربة
+              المستخدم بشكل كبير.
+            </p>
+          </div>
+          <div class="tech-card">
+            <div class="tech-icon-large">📱</div>
+            <h3>دعم شامل للأجهزة</h3>
+            <p>
+              تصميم متجاوب (Responsive Design) يضمن عمل التطبيق بكفاءة وجمالية
+              على جميع الشاشات.
+            </p>
+          </div>
+          <div class="tech-card">
+            <div class="tech-icon-large">🧩</div>
+            <h3>مرونة التطوير</h3>
+            <p>
+              سهولة إضافة وتعديل الخصائص والميزات المستقبلية، مما يجعل النظام
+              قابلًا للتكيف مع المتطلبات المتغيرة.
+            </p>
+          </div>
+          <div class="tech-card">
+            <div class="tech-icon-large">📊</div>
+            <h3>تقارير وتحليلات متقدمة</h3>
+            <p>
+              القدرة على دمج أدوات التحليل لتقديم رؤى قيمة حول أداء التطبيق
+              وتفاعل المستخدمين والسائقين.
+            </p>
+          </div>
+          <div class="tech-card">
+            <div class="tech-icon-large">🛠️</div>
+            <h3>دعم طويل الأمد</h3>
+            <p>
+              استخدام تقنيات مدعومة بقوة من مجتمعات تطوير عالمية يضمن سهولة
+              الحصول على الدعم والتحديثات المستمرة.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pricing-section">
+        <h2 class="section-title">💰 عرض السعر المقترح لمشروع "VIP Ride"</h2>
+        <p class="pricing-description">
+          نتعهد بتقديم تطبيق تنقل فاخر متكامل يلبي طموحاتكم وأكثر.
+        </p>
+        <div class="pricing-value">
+          <span class="pricing-currency">جنيه مصري</span>120,000
+        </div>
+        <p class="pricing-description">تكلفة المشروع كاملاً شاملة جميع مراحل التطوير والتسليم</p>
+        <div class="pricing-includes">
+          <h3>ما يشمله هذا العرض الشامل:</h3>
+          <ul>
+            <li>
+              <div class="icon-checkmark">✅</div>
+              <strong>تصميم وتطوير الواجهة والتطبيقات:</strong> بناء تطبيقات العميل والسائق ولوحة تحكم المشرف بأعلى معايير الجودة.
+            </li>
+            <li>
+              <div class="icon-checkmark">✅</div>
+              <strong>لوحة تحكم شاملة:</strong> توفير أدوات تحكم قوية وذكية لإدارة جميع جوانب التطبيق بكفاءة.
+            </li>
+            <li>
+              <div class="icon-checkmark">✅</div>
+              <strong>التكامل مع بوابات الدفع:</strong> ربط التطبيق بأنظمة دفع آمنة وفعالة ومتنوعة لتجربة مستخدم سلسة.
+            </li>
+            <li>
+              <div class="icon-checkmark">✅</div>
+              <strong>اختبار وتجربة شاملة:</strong> ضمان جودة التطبيق وأدائه الأمثل من خلال اختبارات مكثفة قبل الإطلاق الرسمي.
+            </li>
+            <li>
+              <div class="icon-checkmark">✅</div>
+              <strong>رفع التطبيق على App Store + Google Play:</strong> ليصبح متاحًا لجمهور واسع عبر المتاجر العالمية للتطبيقات.
+            </li>
+            <li>
+              <div class="icon-checkmark">✅</div>
+              <strong>تسليم كود المصدر (Source Code):</strong> تسليم كامل لكود المشروع مع الوثائق الفنية اللازمة، لضمان الشفافية والتحكم المستقبلي.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">🏁 الشكل النهائي المتوقع للتطبيق</h2>
+        <p style="text-align: center; margin-bottom: 30px;">
+          نتوقع أن يكون "VIP Ride" تحفة فنية بحد ذاته، حيث يجمع
+          بين الأداء القوي والتصميم البصري الفاخر لتقديم تجربة لا مثيل لها:
+        </p>
+        <div class="mockup-gallery">
+          <div class="mockup-card">
+            <img
+              src="https://placehold.co/600x400/222222/FF7F00?text=App+Home+Screen"
+              alt="شاشة التطبيق الرئيسية"
+            />
+            <div class="mockup-title">الشاشة الرئيسية الفاخرة</div>
+          </div>
+          <div class="mockup-card">
+            <img
+              src="https://placehold.co/600x400/222222/FF7F00?text=Booking+Flow"
+              alt="شاشة حجز الرحلة"
+            />
+            <div class="mockup-title">عملية الحجز السلسة</div>
+          </div>
+          <div class="mockup-card">
+            <img
+              src="https://placehold.co/600x400/222222/FF7F00?text=Driver+Tracking"
+              alt="شاشة تتبع السائق"
+            />
+            <div class="mockup-title">تتبع السائق المباشر</div>
+          </div>
+          <div class="mockup-card">
+            <img
+              src="https://placehold.co/600x400/222222/FF7F00?text=Driver+Dashboard"
+              alt="لوحة تحكم السائق"
+            />
+            <div class="mockup-title">لوحة تحكم السائق</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="call-to-action">
+        <h2>📞 هل أنت جاهز لتبدأ؟</h2>
+        <p>
+          نحن نؤمن أن فكرة "VIP Ride" قوية جدًا ولها سوق كبير
+          ينتظرها!
+        </p>
+        <p>دعنا نحول هذه الرؤية إلى حقيقة ملموسة.</p>
+        <a href="#contact" class="contact-button">تواصل معنا الآن</a>
+      </div>
+    </div>
+  </body>
+</html>
